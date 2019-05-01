@@ -25,3 +25,17 @@ def user_logout(request):
     return redirect('stories:login')
 
 
+def user_registration(request):
+    form = Registration(request.POST or None)
+    if form.is_valid():
+        user = form.save(commit=False)
+        username = form.cleaned_data['username']
+        password = form.cleaned_data['password']
+        email = form.cleaned_data['email']
+        user.set_password(password)
+        user.save()
+        user = authenticate(username=username, password=password)
+        login(request, user)
+        return redirect('stories:create')
+    return render(request, 'register.html', {'form': form})
+
