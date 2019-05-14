@@ -75,16 +75,13 @@ def add_resource(request):
         new_resource = form.save(commit=False)
         new_resource.user = request.user
         new_resource.save()
-        return redirect("story:resources")
+        return redirect("story:resources_dashboard")
     return render(request, "add_resource.html", {"form": form})
 
 @login_required(login_url="story:login")
 def resources_dashboard(request):
-    if not request.user.is_authenticated():
-        return redirect('music:login')
-    else:
-        user_resources = request.user.resources.all()
-        return render(request, 'resources.html', {'resources': user_resources})
+    user_resources = request.user.resources_set.all()
+    return render(request, 'resources.html', {'resources': user_resources})
 
 
 def edit_resource(request, resource_id):
