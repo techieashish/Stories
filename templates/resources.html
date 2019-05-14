@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Resources | Stories {% endblock %}
+    {% block body %}
+        <div class="container">
+
+        <div class="rows">
+            <div class="panel panel-default">
+
+                <div class="panel-body">
+
+                    <h1 style="color: darkred">Resources</h1>
+            <div class="col-md-12">
+
+                <table class="table success">
+                    <thead>
+                        <tr>
+                            <th>Resource Name</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       {% for resource in resources %}
+                            <tr class="warning">
+                            <td>{{ resource.resource_name }}</td>
+                            <td>{{ resource.description }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        </div>
+    {% endblock %}

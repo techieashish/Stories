@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>{% block title %}Stories{% endblock %}</title>
+    <!--Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Sonsie+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Niconne" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Courgette|Lobster|Merriweather|Oleo+Script|Permanent+Marker|Shrikhand" rel="stylesheet">
+
+    <!-- End Google Fonts>
+    <!-- BootStrap Files Starts-->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+     <!-- BootStrap Files Starts-->
+
+</head>
+<body>
+    <!--Navigation Starts-->
+    <nav class="navbar navbar-inverse">
+        <!---->
+        <!--Container starts-->
+        <div class="container-fluid">
+              <!--Header starts-->
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="{% url 'story:index' %}" class="navbar-brand">Stories</a>
+            </div>
+            <!--Header Ends-->
+
+            <div class="collapse navbar-collapse" id="topNavBar">
+                 <ul class="nav navbar-nav">
+                        <li>
+                            <a href="{% url 'story:dash' %}">
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'story:dash' %}">
+                                <span class="glyphicon glyphicon-th" aria-hidden="true"></span>&nbsp;Resources
+                            </a>
+                        </li>
+                    </ul>
+
+                 <ul class="nav navbar-nav navbar-right">
+                        <li >
+                            <a href="{% url 'story:dash' %}">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Resource
+                            </a>
+                        </li>
+                         <li>
+                            <a href="{% url 'story:logout' %}">
+                                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;Logout
+                            </a>
+                        </li>
+
+                    </ul>
+            </div>
+        </div>
+    </nav>
+    <!--Navigation Ends-->
+    {% block body %}
+    {% endblock %}
+
+</body>

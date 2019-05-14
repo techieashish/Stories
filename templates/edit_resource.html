@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %} Modify Resource {% endblock %}
+
+    {% block body %}
+        <div class="container">
+
+        <div class="row">
+            <h2 style="font-family: 'Sonsie One'; margin-left: -5%">Modify Resource</h2>
+            <div class="col-md-6">
+
+                <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% include 'form.html' %}
+                    <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                </div>
+                            </div>
+                </form>
+            </div>
+
+        </div>
+
+        </div>
+    {% endblock %}

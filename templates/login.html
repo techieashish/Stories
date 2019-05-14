@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{{% block title %} Log In {% endblock %}
+
+
+    {% block body %}
+        <div class="container-fluid">
+
+        <div class="row">
+             <div class="col-sm-12 col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h1>Log In</h1>
+                        <form class="form-horizontal" role="form" action="{% url 'story:login' %}" method="post">
+                            {% csrf_token %}
+                            {% for field in form %}
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="">{{ field.label_tag }}</label>
+                                    <div class="col-sm-10" >
+                                    {{ field }}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+                    <div class="panel-footer">
+                            Don't have an account? <a href="{% url 'story:register' %}">Click here</a> to register.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+        </div>
+    {% endblock %}

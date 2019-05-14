@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+    {% block body %}
+        {% if not profile %}
+        <div class="container">
+            <h5>Profile Not created Yet</h5>
+            <p>Create profile</p>
+            <a href="{% url 'story:create' %}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+        </div>
+        {% else %}
+        {% for data in profile %}
+            <img src="{{data.profile_picture.url}}" class="img-responsive img-circle center-block" style="height:300px;width:300px" />
+            <h3 class="text-center">{{data.name}}</h3>
+            <h4 class="text-center">{{data.bio}}</h4>
+            <a href="{% url 'story:pedit' %}" class="btn btn-default center-block"><span class="glyphicon glyphicon-pencil"></span></a>
+        {% endfor %}
+        {% endif %}
+    {% endblock %}
