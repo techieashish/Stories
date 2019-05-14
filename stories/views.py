@@ -57,3 +57,34 @@ def create_profile(request):
             return redirect('story:dash')
         return render(request, 'profile.html', {'form': form})
 
+def edit_profile(request):
+    profile_details = Profile.objects.get(user=request.user)
+    form = ProfileForm(request.POST or None, request.FILES or None, instance=profile_details)
+    if request.POST:
+        if form.is_valid():
+            update = form.save(commit=False)
+            update.user = request.user
+            update.save()
+            return redirect('music:dash')
+    return render(request, 'profile.html', {'form': form, 'detail': profile_details})
+
+
+def add_resource(request):
+    form = ResourcesForm(request.POST or None)
+    if form.is_valid():
+        new_resource = form.save(commit=False)
+        new_resource.user = request.user
+        new_resource.save()
+        return redirect("story:resources")
+    return render(request, "add_resources.html", {"form": form})
+
+
+def resources_dashboard(request):
+    if not request.user.is_authenticated():
+        return redirect('music:login')
+    else:
+        user_resources = request.user.resources.all()
+        return render(request, 'resources.html', {'resources': user_resources})
+
+
+
