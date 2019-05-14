@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
-from .forms import Login, Registration
+from .forms import Login, Registration, ProfileForm, ResourcesForm
+from .models import Profile, Resources
 
 # Create your views here.
 
@@ -38,4 +39,21 @@ def user_registration(request):
         login(request, user)
         return redirect('stories:create')
     return render(request, 'register.html', {'form': form})
+
+def user_dashboard(request):
+    profile = Profile.objects.filter(user=request.user)
+    return render(request, 'dash.html', {'profile': profile})
+
+
+def create_profile(request):
+    if not request.user.is_authenticated():
+        redirect('story:login')
+    else:
+        form = ProfileForm(request.POST or None, request.FILES or None)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+            return redirect('story:dash')
+        return render(request, 'profile.html', {'form': form})
 
