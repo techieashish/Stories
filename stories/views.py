@@ -7,7 +7,7 @@ from .models import Profile, Resources
 # Create your views here.
 
 def index(request):
-    return render(request, "base.html")
+    return redirect("story:login")
 
 
 def user_login(request):
@@ -38,7 +38,7 @@ def user_registration(request):
         user.save()
         user = authenticate(username=username, password=password)
         login(request, user)
-        return redirect('stories:create')
+        return redirect('story:create')
     return render(request, 'register.html', {'form': form})
 
 @login_required(login_url="story:login")
@@ -48,16 +48,13 @@ def user_dashboard(request):
 
 @login_required(login_url="story:login")
 def create_profile(request):
-    if not request.user.is_authenticated():
-        redirect('story:login')
-    else:
-        form = ProfileForm(request.POST or None, request.FILES or None)
-        if form.is_valid():
-            profile = form.save(commit=False)
-            profile.user = request.user
-            profile.save()
-            return redirect('story:dash')
-        return render(request, 'profile.html', {'form': form})
+    form = ProfileForm(request.POST or None, request.FILES or None, request.GET or None)
+    if form.is_valid():
+        profile = form.save(commit=False)
+        profile.user = request.user
+        profile.save()
+        return redirect('story:dash')
+    return render(request, 'profile.html', {'form': form})
 
 
 def edit_profile(request):

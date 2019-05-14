@@ -18,13 +18,13 @@ class Registration(forms.ModelForm):
             'email',
             'password'
         ]
-class ProfileForm(forms.Form):
+class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = Profile
         fields = "__all__"
 
-class ResourcesForm(forms.Form):
+class ResourcesForm(forms.ModelForm):
 
     class Meta:
         model = Resources
