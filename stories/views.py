@@ -18,7 +18,7 @@ def user_login(request):
         user = authenticate(username=username, password=password)
         if user is not None and user.is_active:
             login(request, user)
-            return redirect('')
+            return redirect('story:dash')
 
     return render(request, 'login.html', {'form': form})
 

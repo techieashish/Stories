@@ -22,11 +22,11 @@ class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = "__all__"
+        exclude = ("user", )
 
 class ResourcesForm(forms.ModelForm):
 
     class Meta:
         model = Resources
-        fields = "__all__"
+        exclude = ("user", )
 

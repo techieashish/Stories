@@ -14,5 +14,6 @@ urlpatterns = [
     url(r'^resources/$', views.resources_dashboard, name='resources_dashboard'),
     url(r'^(?P<resource_id>[0-9]+)/editresource/$', views.edit_resource, name='edit_resource'),
     url(r'^(?P<album_id>[0-9]+)/deleteresource/$', views.delete_resource, name='delete_resource'),
+    url(r'^addresource', views.add_resource, name="add_resource")
 
 ]
